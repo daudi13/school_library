@@ -5,6 +5,7 @@ class Person
   attr_writer :id
 
   def initialize(age, name="Unknown", parent_permission: true)
+    super()
     @id = SecureRandom.uuid
     @age = age
     @name = name
