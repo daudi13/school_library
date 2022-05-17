@@ -22,4 +22,8 @@ class Person < Nameable
   def can_use_service?
     of_age || @parent_permission
   end
+
+  def correct_name 
+    @name
+  end
 end
