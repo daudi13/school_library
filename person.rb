@@ -1,6 +1,7 @@
 require 'SecureRandom'
+require './nameable'
 
-class Person
+class Person < Nameable
   attr_accessor :name, :age
   attr_writer :id
 
@@ -20,5 +21,9 @@ class Person
 
   def can_use_service?
     of_age || @parent_permission
+  end
+
+  def correct_name
+    @name
   end
 end
