@@ -6,6 +6,12 @@
  - Save records of who borrowed a given book and when.
 And all of this will be built in a beautiful and well-organized way!
 
+
+# Getting Started
+To get the content of this project locally you beed to run the following commands in your terminal.
+
+1. ``git clone https://github.com/daudi13/school_library.git``
+2. `cd school_library`
 ## Authors
 
 👤 **Author**
