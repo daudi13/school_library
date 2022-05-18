@@ -16,5 +16,4 @@ class Student < Person
     @classroom = classroom
     classroom.student.push(self) unless classroom.student.includes?(self)
   end
-
 end

@@ -8,6 +8,6 @@ require './capitalize_decorator'
 
 person = Person.new(44, "David ouma")
 person.correct_name
-  capitalizedPerson = CapitalizeDecorator.new(person)
-  capitalizedPerson.correct_name
-  capitalizedTrimmedPerson = TrimmerDecorator.new(person)
+capitalizedPerson = CapitalizeDecorator.new(person)
+capitalizedPerson.correct_name
+capitalizedTrimmedPerson = TrimmerDecorator.new(person)
