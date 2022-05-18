@@ -3,8 +3,10 @@ class Book
     attr_reader :rental
 
   def initialize(title, author)
+    super()
     @title = title
     @author = author
+    @rental = []
   end
 
   def add_rental(rental)
