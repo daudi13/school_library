@@ -3,6 +3,7 @@ class Rental
   attr_reader :book
 
   def initialize(date)
+    super()
     @date = date
   end
 
