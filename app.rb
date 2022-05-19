@@ -75,5 +75,20 @@ class App
     [age, name, specialization]
   end
 
-  
+  def create_person
+    print "\nDo you want to create a student(1) or a teacher (2)? [Input the number]: "
+    @client_input = gets.chomp
+    create_person unless client_input_valid?(client_input, %w[1 2])
+
+    if @client_input == '1'
+      age, name, has_parent_permission = student_info
+      person = Student.new(age, @classroom_default, name, parent_permission: has_parent_permission)
+    else 
+      age, name, specialization = teacher_info
+      person = Teacher.new(age, specialization, name)
+    end
+
+    @people << person
+    puts 'Person created successfully'
+  end
 end
