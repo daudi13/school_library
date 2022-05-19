@@ -39,4 +39,15 @@ class App
 
   def pick_name
     print 'Name: '
+    name = gets.chomp
+    name.empty? ? pick_name : name
+  end
+
+  def pick_age
+    print 'Age: '
+    age = gets.chomp.to_i
+    (1..75).includes?(age) ? age : pick_age
+  end
+
+  
 end
