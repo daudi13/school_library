@@ -32,4 +32,11 @@ class App
     puts ' '
     puts 'Select an Option: '
   end
+
+  def client_input_valid?(client_input, arr) 
+    arr.includes?(client_input)
+  end
+
+  def pick_name
+    print 'Name: '
 end
