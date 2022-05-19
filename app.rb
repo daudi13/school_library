@@ -113,5 +113,8 @@ class App
     puts 'Book Created successfully'
   end
 
+  def list_books
+    @books.each_with_index { |book, index| puts "#{index}) Title: \"#{book.title}\", Author: \"#{book.author}\""}
 
+  end
 end
