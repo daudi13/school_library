@@ -195,7 +195,7 @@ class App
       end
   end
 
-  def wrap
+  def run
     loop do
       case client_input
       when '1', '2', '6'
@@ -210,7 +210,7 @@ class App
         puts 'Please try with one of these options: '
         ui_prompt
         @client_input = gets.chomp
-        wrap
+        run
       end
 
       ui_prompt
@@ -219,5 +219,9 @@ class App
   end
 end
 
-  def 
+def main
+  app = App.new
+  app.run
 end
+
+main
