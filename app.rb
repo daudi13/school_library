@@ -93,8 +93,20 @@ class App
   end
 
   def get_title
-    print 'Title'
+    print 'Title: '
     title = get.chomp
     title.empty? ? get_title : title
+  end
+
+  def get_author
+    print 'Author: '
+    author = gets.chomp
+    author.empty? ? get_author : author
+  end
+
+  def create_book 
+    print 'Author: '
+    author = gets.chomp
+    author.empty? ? create_book : author
   end
 end
