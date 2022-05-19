@@ -123,5 +123,10 @@ class App
     end
   end
 
-  
+  def get_specified_person
+    puts "\nSelect a person from the following list by number"
+    list_persons
+    specified_person_index = gets.chomp
+    (0..@people.length).include?(specified_person_index.to_i) ? specified_person_index.to_i : read_desired_person
+  end
 end
