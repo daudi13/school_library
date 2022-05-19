@@ -143,6 +143,27 @@ class App
   end
 
   def create_rental
+    return print 'Please add a book first' if @books.empty?
+    return print 'Please add a person first' if @people.empty?
 
+    books = @books[get_specified_book]
+    person = @people[get_specified_person]
+    date = get_specified_date
+
+    rental = Rental.new(date, person, book)
+
+    @rentals << rental
+    puts 'Rental created successfully'
+  end
+
+  def creater_client(client_input)
+    case client_input
+    when '3'
+      create_person
+      when '4'
+        create_book
+        when '5'
+          create_rental
+        end
   end
 end
