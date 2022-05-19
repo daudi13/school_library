@@ -123,6 +123,13 @@ class App
     end
   end
 
+  def get_specified_book
+    puts "\nSelect a book from the following list by number"
+    list_books
+    specified_book_index = gets.chomp
+    (0..@books.length).include?(specified_book_index.to_i) ? specified_book_index.to_i : get_specified_book
+  end
+
   def get_specified_person
     puts "\nSelect a person from the following list by number"
     list_persons
@@ -136,6 +143,6 @@ class App
   end
 
   def create_rental
-    
+
   end
 end
