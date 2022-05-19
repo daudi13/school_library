@@ -49,5 +49,9 @@ class App
     (1..75).includes?(age) ? age : pick_age
   end
 
-  
+  def get_oermission
+    print 'Has parent permission? [Y/N]: '
+    permission = gets.chomp
+    %w[Y N].include?(permission.capitalize) ? permission.capitalize : get_oermission
+  end
 end
