@@ -91,4 +91,10 @@ class App
     @people << person
     puts 'Person created successfully'
   end
+
+  def get_title
+    print 'Title'
+    title = get.chomp
+    title.empty? ? get_title : title
+  end
 end
