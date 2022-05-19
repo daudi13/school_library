@@ -156,7 +156,7 @@ class App
     puts 'Rental created successfully'
   end
 
-  def creater_client(client_input)
+  def create_client(client_input)
     case client_input
     when '3'
       create_person
@@ -165,5 +165,22 @@ class App
         when '5'
           create_rental
         end
+  end
+
+  def list_id_rentals
+    return puts 'Please add a rental first' if @rental.empty?
+
+    puts "\nSelect a person fromt the following list by number"
+    @people.each do |person|
+      puts "ID: #{person.id}, [#person.class] Name: #{person.name}, Age: #{person.age}"
+    end
+    person_id = gets.chomp.to_i
+    rentals = @rental.select { |rental| rental.person.id == person_id}
+    if rentals.empty?
+      puts 'No rentals found for this person.'
+    else
+      rentals.each do |rental|
+        puts "Date: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}"
+      end
   end
 end
