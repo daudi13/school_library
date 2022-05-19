@@ -49,9 +49,22 @@ class App
     (1..75).includes?(age) ? age : pick_age
   end
 
-  def get_oermission
+  def get_permission
     print 'Has parent permission? [Y/N]: '
     permission = gets.chomp
-    %w[Y N].include?(permission.capitalize) ? permission.capitalize : get_oermission
+    %w[Y N].include?(permission.capitalize) ? permission.capitalize : get_permission
+  end
+
+  def get_specialization
+    print 'Specialization: '
+    Specialization = get.chomp
+    Specialization.empty? ? get_specialization : Specialization
+  end
+
+  def student_info
+    age = pick_age
+    name = pick_name
+    has_parent_permission = get_permission == 'Y'
+    [age, name, has_parent_permission]
   end
 end
