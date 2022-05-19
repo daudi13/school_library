@@ -206,13 +206,12 @@ class App
         puts 'Thank you for using this app!'
         exit(true)
       else
-        puts "\nInvalid input \"#{client_input\"!"
+        puts "\nInvalid input \"#{client_input}\"!"
         puts 'Please try with one of these options: '
         ui_prompt
         @client_input = gets.chomp
         run
       end
-
       ui_prompt
       @client_input = gets.chomp
     end
