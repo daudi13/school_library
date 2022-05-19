@@ -57,8 +57,8 @@ class App
 
   def get_specialization
     print 'Specialization: '
-    Specialization = get.chomp
-    Specialization.empty? ? get_specialization : Specialization
+    specialization = get.chomp
+    specialization.empty? ? get_specialization : specialization
   end
 
   def student_info
@@ -67,4 +67,13 @@ class App
     has_parent_permission = get_permission == 'Y'
     [age, name, has_parent_permission]
   end
+
+  def teacher_info 
+    age = pick_age
+    name = pick_name
+    specialization = get_specialization
+    [age, name, specialization]
+  end
+
+  
 end
