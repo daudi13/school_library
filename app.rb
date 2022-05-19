@@ -106,7 +106,12 @@ class App
 
   def create_book 
     print 'Author: '
-    author = gets.chomp
-    author.empty? ? create_book : author
+    title = get_title
+    author = get_author
+    book = Book.new(title, author)
+    @books << book
+    puts 'Book Created successfully'
   end
+
+
 end
