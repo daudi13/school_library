@@ -49,29 +49,29 @@ class App
     (1..75).include?(age) ? age : pick_age
   end
 
-  def get_permission
+  def rip_permission
     print 'Has parent permission? [Y/N]: '
     permission = gets.chomp
-    %w[Y N].include?(permission.capitalize) ? permission.capitalize : get_permission
+    %w[Y N].include?(permission.capitalize) ? permission.capitalize : rip_permission
   end
 
-  def get_specialization
+  def rip_specialization
     print 'Specialization: '
     specialization = gets.chomp
-    specialization.empty? ? get_specialization : specialization
+    specialization.empty? ? rip_specialization : specialization
   end
 
   def student_info
     age = pick_age
     name = pick_name
-    has_parent_permission = get_permission == 'Y'
+    has_parent_permission = rip_permission == 'Y'
     [age, name, has_parent_permission]
   end
 
   def teacher_info
     age = pick_age
     name = pick_name
-    specialization = get_specialization
+    specialization = rip_specialization
     [age, name, specialization]
   end
 
@@ -92,22 +92,22 @@ class App
     puts 'Person created successfully'
   end
 
-  def get_title
+  def rip_title
     print 'Title: '
     title = gets.chomp
-    title.empty? ? get_title : title
+    title.empty? ? rip_title : title
   end
 
-  def get_author
+  def rip_author
     print 'Author: '
     author = gets.chomp
-    author.empty? ? get_author : author
+    author.empty? ? rip_author : author
   end
 
   def create_book
     print ' '
-    title = get_title
-    author = get_author
+    title = rip_title
+    author = rip_author
     book = Book.new(title, author)
     @books << book
     puts 'Book Created successfully'
@@ -123,21 +123,21 @@ class App
     end
   end
 
-  def get_specified_book
+  def rip_specified_book
     puts "\nSelect a book from the following list by number"
     list_books
     specified_book_index = gets.chomp
-    (0..@books.length).include?(specified_book_index.to_i) ? specified_book_index.to_i : get_specified_book
+    (0..@books.length).include?(specified_book_index.to_i) ? specified_book_index.to_i : rip_specified_book
   end
 
-  def get_specified_person
+  def rip_specified_person
     puts "\nSelect a person from the following list by number (not id)"
     list_persons
     specified_person_index = gets.chomp
     (0..@people.length).include?(specified_person_index.to_i) ? specified_person_index.to_i : read_desired_person
   end
 
-  def get_specified_date
+  def rip_specified_date
     print "\nDate: "
     gets.chomp
   end
@@ -146,9 +146,9 @@ class App
     return print 'Please add a book first' if @books.empty?
     return print 'Please add a person first' if @people.empty?
 
-    books = @books[get_specified_book]
-    person = @people[get_specified_person]
-    date = get_specified_date
+    books = @books[rip_specified_book]
+    person = @people[rip_specified_person]
+    date = rip_specified_date
 
     rental = Rental.new(date, person, books)
 
