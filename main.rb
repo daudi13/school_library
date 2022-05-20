@@ -1,4 +1,4 @@
-require './app.rb'
+require './app'
 
 def main
   app = App.new
