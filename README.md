@@ -12,6 +12,7 @@ To get the content of this project locally you beed to run the following command
 
 1. ``git clone https://github.com/daudi13/school_library.git``
 2. `cd school_library`
+3. `ruby main.rb`
 ## Authors
 
 👤 **Author**
