@@ -185,38 +185,38 @@ class App
     end
   end
 
-    def diplay_list(client_input)
-      case client_input
-      when '1'
-        list_books
-      when '2'
-        list_persons
-      when '6'
-        list_id_rentals
-      end
+  def diplay_list(client_input)
+    case client_input
+    when '1'
+      list_books
+    when '2'
+      list_persons
+    when '6'
+      list_id_rentals
     end
+  end
 
-    def run
-      loop do
-        case client_input
-        when '1', '2', '6'
-          diplay_list(client_input)
-        when '3', '4', '5'
-          create_client(client_input)
-        when '7'
-          puts 'Thank you for using this app!'
-          exit(true)
-        else
-          puts "\nInvalid input \"#{client_input}\"!"
-          puts 'Please try with one of these options: '
-          ui_prompt
-          @client_input = gets.chomp
-          run
-        end
+  def run
+    loop do
+      case client_input
+      when '1', '2', '6'
+        diplay_list(client_input)
+      when '3', '4', '5'
+        create_client(client_input)
+      when '7'
+        puts 'Thank you for using this app!'
+        exit(true)
+      else
+        puts "\nInvalid input \"#{client_input}\"!"
+        puts 'Please try with one of these options: '
         ui_prompt
         @client_input = gets.chomp
+        run
       end
+      ui_prompt
+      @client_input = gets.chomp
     end
+  end
 end
 
 def main
