@@ -146,11 +146,11 @@ class App
     return print 'Please add a book first' if @books.empty?
     return print 'Please add a person first' if @people.empty?
 
-    books = @books[rip_specified_book]
+    book = @books[rip_specified_book]
     person = @people[rip_specified_person]
     date = rip_specified_date
 
-    rental = Rental.new(date, person, books)
+    rental = Rental.new(date, person, book)
 
     @rental << rental
     puts 'Rental created successfully'
@@ -171,9 +171,6 @@ class App
     return puts 'Please add a rental first' if @rental.empty?
 
     puts "\nID of person: "
-    # @people.each do |person|
-    #   puts "ID: #{person.id}, [#{person.class}] Name: #{person.name}, Age: #{person.age}"
-    # end
     person_id = gets.chomp.to_i
     rentals = @rental.select { |rent| rent.person.id == person_id }
     if rentals.empty?
