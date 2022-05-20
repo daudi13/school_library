@@ -13,12 +13,12 @@ class App
     ui_prompt
     @rental = []
     @people = []
-    @classroom_default = classroom.new('default-classroom')
+    @classroom_default = Classroom.new('default-classroom')
     @books = []
     @client_input = gets.chomp
   end
 
-  def ui_prompt 
+  def ui_prompt
     puts '
     Please choose an option by entering a number:
     1 - List all books
@@ -33,8 +33,8 @@ class App
     puts 'Select an Option: '
   end
 
-  def client_input_valid?(client_input, arr) 
-    arr.includes?(client_input)
+  def client_input_valid?(client_input, arr)
+    arr.include?(client_input)
   end
 
   def pick_name
@@ -46,7 +46,7 @@ class App
   def pick_age
     print 'Age: '
     age = gets.chomp.to_i
-    (1..75).includes?(age) ? age : pick_age
+    (1..75).include?(age) ? age : pick_age
   end
 
   def get_permission
@@ -57,7 +57,7 @@ class App
 
   def get_specialization
     print 'Specialization: '
-    specialization = get.chomp
+    specialization = gets.chomp
     specialization.empty? ? get_specialization : specialization
   end
 
@@ -68,7 +68,7 @@ class App
     [age, name, has_parent_permission]
   end
 
-  def teacher_info 
+  def teacher_info
     age = pick_age
     name = pick_name
     specialization = get_specialization
@@ -83,7 +83,7 @@ class App
     if @client_input == '1'
       age, name, has_parent_permission = student_info
       person = Student.new(age, @classroom_default, name, parent_permission: has_parent_permission)
-    else 
+    else
       age, name, specialization = teacher_info
       person = Teacher.new(age, specialization, name)
     end
@@ -94,7 +94,7 @@ class App
 
   def get_title
     print 'Title: '
-    title = get.chomp
+    title = gets.chomp
     title.empty? ? get_title : title
   end
 
@@ -104,8 +104,8 @@ class App
     author.empty? ? get_author : author
   end
 
-  def create_book 
-    print 'Author: '
+  def create_book
+    print ' '
     title = get_title
     author = get_author
     book = Book.new(title, author)
@@ -114,7 +114,7 @@ class App
   end
 
   def list_books
-    @books.each_with_index { |book, index| puts "#{index}) Title: \"#{book.title}\", Author: \"#{book.author}\""}
+    @books.each_with_index { |book, index| puts "#{index}) Title: \"#{book.title}\", Author: \"#{book.author}\"" }
   end
 
   def list_persons
@@ -131,7 +131,7 @@ class App
   end
 
   def get_specified_person
-    puts "\nSelect a person from the following list by number"
+    puts "\nSelect a person from the following list by number (not id)"
     list_persons
     specified_person_index = gets.chomp
     (0..@people.length).include?(specified_person_index.to_i) ? specified_person_index.to_i : read_desired_person
@@ -150,9 +150,9 @@ class App
     person = @people[get_specified_person]
     date = get_specified_date
 
-    rental = Rental.new(date, person, book)
+    rental = Rental.new(date, person, books)
 
-    @rentals << rental
+    @rental << rental
     puts 'Rental created successfully'
   end
 
@@ -160,32 +160,33 @@ class App
     case client_input
     when '3'
       create_person
-      when '4'
-        create_book
-        when '5'
-          create_rental
-        end
+    when '4'
+      create_book
+    when '5'
+      create_rental
+    end
   end
 
   def list_id_rentals
     return puts 'Please add a rental first' if @rental.empty?
 
-    puts "\nSelect a person fromt the following list by number"
-    @people.each do |person|
-      puts "ID: #{person.id}, [#person.class] Name: #{person.name}, Age: #{person.age}"
-    end
+    puts "\nID of person: "
+    # @people.each do |person|
+    #   puts "ID: #{person.id}, [#{person.class}] Name: #{person.name}, Age: #{person.age}"
+    # end
     person_id = gets.chomp.to_i
-    rentals = @rental.select { |rental| rental.person.id == person_id}
+    rentals = @rental.select { |rent| rent.person.id == person_id }
     if rentals.empty?
       puts 'No rentals found for this person.'
     else
       rentals.each do |rental|
         puts "Date: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}"
       end
+    end
   end
 
-  def diplay_list(client_input)
-    case client_input
+    def diplay_list(client_input)
+      case client_input
       when '1'
         list_books
       when '2'
@@ -193,34 +194,34 @@ class App
       when '6'
         list_id_rentals
       end
-  end
+    end
 
-  def run
-    loop do
-      case client_input
-      when '1', '2', '6'
-        diplay_list(client_input)
-      when '3', '4', '6'
-        create_client(client_input)
-      when '7'
-        puts 'Thank you for using this app!'
-        exit(true)
-      else
-        puts "\nInvalid input \"#{client_input}\"!"
-        puts 'Please try with one of these options: '
+    def run
+      loop do
+        case client_input
+        when '1', '2', '6'
+          diplay_list(client_input)
+        when '3', '4', '5'
+          create_client(client_input)
+        when '7'
+          puts 'Thank you for using this app!'
+          exit(true)
+        else
+          puts "\nInvalid input \"#{client_input}\"!"
+          puts 'Please try with one of these options: '
+          ui_prompt
+          @client_input = gets.chomp
+          run
+        end
         ui_prompt
         @client_input = gets.chomp
-        run
       end
-      ui_prompt
-      @client_input = gets.chomp
     end
-  end
 end
 
 def main
-  app = App.new
-  app.run
+  app = App.new()
+  app.run()
 end
 
 main

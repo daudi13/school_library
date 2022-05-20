@@ -6,8 +6,8 @@ class Rental
     super()
     @date = date
     @book = book
-    book.rental.push(self) unless book.rental.includes?(self)
+    book.rental.push(self) unless book.rental.include?(self)
     @person = person
-    person.rental.push(self) unless person.rental.includes?(self)
+    person.rental.push(self) unless person.rental.include?(self)
   end
 end
