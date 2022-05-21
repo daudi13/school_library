@@ -82,7 +82,7 @@ class App
 
     if @client_input == '1'
       age, name, has_parent_permission = student_info
-      person = Student.new(age, @classroom_default, name, parent_permission: has_parent_permission)
+      person = Student.new( @classroom_default, name, parent_permission: has_parent_permission)
     else
       age, name, specialization = teacher_info
       person = Teacher.new(age, specialization, name)
